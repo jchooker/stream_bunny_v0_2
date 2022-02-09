@@ -62,13 +62,12 @@
                 </div>
             </div> {% endcomment %}
 
-            {#<div class="w-100 bg-secondary h-auto" height="170">#}
 
                 <div id="carousel" class="container d-flex justify-content-center h-auto">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide display-d carousel-fade" data-bs-ride="carousel" height="170">
-                        <div class="carousel-inner" height="170">
-                            <div class="carousel-item active" data-bs-interval="8000" height="170">
-                                <div class="d-flex" height="170">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide display-d carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="8000">
+                                <div class="d-flex">
                                     <img src="{% static 'user_experience_app/images/1.png' %}" alt="..." height="146" width="240">
                                     <img src="{% static 'user_experience_app/images/2.jpeg' %}" alt="..." height="146" width="240">
                                     <img src="{% static 'user_experience_app/images/3.jpeg' %}" alt="..." height="146" width="240">
@@ -151,9 +150,6 @@
                         </div>
                     </div>
                 </div>
-
-            {#</div>#}
-
 
         {% endblock carousel %}
             
