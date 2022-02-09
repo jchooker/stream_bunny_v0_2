@@ -23,6 +23,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
     </style>
+    {% block fave %}<link rel="shortcut icon" type="image/png" href="{% static 'user_experience_app/images/favicon.png' %}"/>{% endblock %}
 </head>
 
 <body>
@@ -185,7 +186,8 @@
                             </li>
                             {% endif %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a>
+                                {% comment %} <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a> {% endcomment %}
+                                <a class="nav-link" href="/user_experience/user_info_page_test">{{user.first_name}} {{user.last_name}}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/login/logout">Log Out</a>

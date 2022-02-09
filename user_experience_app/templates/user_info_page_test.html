@@ -3,26 +3,30 @@
 {% block fave %}<link rel="shortcut icon" type="image/png" href="{% static 'user_experience_app/images/favicon.png' %}"/>{% endblock %}
 
 {% block page_content %}
-<div class="">{# DELETE THIS DIV? #}
-<div id="user_info_table" class=" vertical_align_top yellow_text"> {# ajax grabs inside this div #}
-    <h3 class="yellow_text px-5 mx-5 mb-4"><i>Your Member Information</i></h3>
-    <div class=""> {# DELETE THIS DIV? #}
-        <div class="row yellow_text mx-5">
-            <div class="col col-1"></div>
-            <div class="col  col-4 bg-primaryxxxxx fs-5 ms-5xxxx">
+<div class="">{# DELETE THIS DIV? #} 
+    <div id="user_info_table" class=" row vertical_align_top yellow_text"> {# ajax grabs inside this div #}
+
+        <div id="user-info-panel" class="col-4">
+
+            {% for image in images %}
+                <img src="{{image.image.url}}" alt="" onclick="imgZoom()" id="user-info-image">
+            {% endfor %}
+
+            <div id="user-info-name">
+                <p>{{user.full_name}}</p>
+            </div>
+        </div>
+
+        <div id="info-right-panel" class="col-6 yellow_text mx-5">
+            <h3 class="yellow_text px-5 mx-5 mb-4"><i>Your Member Information</i></h3>
+
+            <div class="bg-primaryxxxxx fs-5 ms-5xxxx">
+
                 <table class="tablexxx table-primaryxxx table-stripedxxx table-hoversxxx text-warningxxx">
                     <tbody>
                         <tr>
-                            <td class="px-5 w-25xxxxx">First Name: </td>
-                            <td class="pe-5">{{user.first_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-5">Last Name: </td>
-                            <td class="pe-5">{{user.last_name}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-5">Email: </td>
-                            <td class="pe-5">{{user.email}}</td>
+                            <td class="px-5 w-25xxxxx">Name:</td>
+                            <td class="pe-5">{{user.full_name}}</td>
                         </tr>
                         <tr>
                             <td class="px-5">Birthday: </td>
@@ -33,9 +37,10 @@
                             <td class="pe-5">{{user.created_at|date:"F j, Y"}}</td>
                         </tr>
                     </tbody>
-                </table>                        
+                </table>
             </div>
-            <div class="col bg-primaryxxxx">
+        </div>
+            <div id="user-info-about" class="row bg-primaryxxxx">
                 <table id="" class="tablexxx table-primaryxxx table-stripedxxx table-hoversxxx text-warningxxx">
                     <tbody>
                         <tr>
@@ -54,7 +59,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    {% comment %} </div> {% endcomment %}
     <div class="px-5 text-end">
         <a id="edit_user_info" class="btn btn-outline-light bg-secondary my-4 mx-5 px-5xxx" href="/user_experience/user_info_page_edit">Edit member information</a>                       
     </div>

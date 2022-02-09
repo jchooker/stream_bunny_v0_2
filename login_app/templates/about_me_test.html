@@ -7,9 +7,10 @@
 <div class="d-inline-block w-50">
     <label class="w-100 text-light text-center my-3" for="about_me">Add an "About Me" section to your profile</label>
     <div class="text-end">
-        <form action="/login/about_me_save" method="POST">
+        <form action="/login/about_me_test_save" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
                 <textarea rows="10" class="w-100  p-2 mb-4" name="about_me" placeholder="Tell us about yourself"></textarea>
+                <input type="file" name="image">
                 <button type="submit" class="btn btn-sm btn-light btn-outline-secondary">Update</button>
         </form>
         <a href="/" class="yellow_text d-inline-block mt-4">Skip this for now</a>
