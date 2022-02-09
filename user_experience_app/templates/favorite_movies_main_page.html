@@ -22,16 +22,16 @@
                 {% for movie in movies %}
                     <tr>
                         <td class="px-4"></td>
-                        <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
+                        <td><a class="btn btn-outline-primary btn-sm" href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
                         <td>{{movie.director}}</td>
                         <td>{{movie.cast}}</td>
                         <td>{{movie.year}}</td>
                         <td>{{movie.imdb_rating}}</td> 
                         <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>
                     {% if movie not in user.liked_by.all %}    
-                        <td><a class="like" href="" movie_id="{{movie.id}}">like</a></td>  
+                        <td><a class="like btn btn-outline-success btn-sm" href="" movie_id="{{movie.id}}">like</a></td>  
                     {% else %}
-                        <td><a class="like" href="" movie_id="{{movie.id}}">un-like</a></td>  
+                        <td><a class="like btn btn-outline-success btn-sm" href="" movie_id="{{movie.id}}">un-like</a></td>  
                     {% endif %}
                     </tr>
                 {% endfor %}

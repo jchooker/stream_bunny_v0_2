@@ -62,14 +62,22 @@ function movie_search(){
                     document.querySelectorAll(".item").forEach(function(movie){
                         movie.addEventListener("click", function(e){
                             e.preventDefault()
+                            movie_details.innerHTML = ''
+                            document.getElementById('loading-spinner-div').innerHTML = `
+                            <button class="btn btn-success" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>`
+
                             $.ajax({
                                 url: `/get_movie/${this.getAttribute("movie-id")}`,
                                 type: `GET`,
                                 success: function(response){
+                                    document.getElementById('loading-spinner-div').innerHTML = ``
                                     let streams = ""
                                     for (stream of response.streams) {
                                         if (stream.stream) {
-                                            streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
+                                            streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo px-2'></a>`
                                         }
                                     }
                                     movie_details.innerHTML = ''
