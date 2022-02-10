@@ -62,11 +62,13 @@
     padding: 0 20px 0 20px;
     display: inline-flex;
     flex-direction: column;
-    text-align: center;
+    align-items:center
+    /* text-align: center; */
 }
 
 #movie-details {
-    width: 95%;
+    width: 85%;
+    min-height:85%;
 }
 .movie_details_year{
     color: rgb(237, 237, 237);

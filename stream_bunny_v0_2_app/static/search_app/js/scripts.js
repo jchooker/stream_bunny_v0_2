@@ -64,11 +64,10 @@ function movie_search(){
                             e.preventDefault()
                             movie_details.innerHTML = ''
                             document.getElementById('loading-spinner-div').innerHTML = `
-                            <button class="btn btn-success" type="button" disabled>
+                            <button class="btn btn-light w-100" type="button" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Loading...
                             </button>`
-
                             $.ajax({
                                 url: `/get_movie/${this.getAttribute("movie-id")}`,
                                 type: `GET`,
@@ -77,17 +76,17 @@ function movie_search(){
                                     let streams = ""
                                     for (stream of response.streams) {
                                         if (stream.stream) {
-                                            streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo px-2'></a>`
+                                            streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo px-3'></a>`
                                         }
                                     }
                                     movie_details.innerHTML = ''
                                     if ('title' in response) {
-                                        movie_details.innerHTML += `<h2 class="yellow_text"><i>${response.title}</i></h2>`
+                                        movie_details.innerHTML += `<h2 class="text-success"><i>${response.title}</i></h2>`
                                     } else {
                                         movie_details.innerHTML += `<h3></h3>`
                                     }
                                     if ('year' in response) {
-                                        movie_details.innerHTML += `<h4 class="movie_details_year">${response.year}</h4>`
+                                        movie_details.innerHTML += `<h4 class="movie_details_year text-secondary">${response.year}</h4>`
                                     } else {
                                         movie_details.innerHTML += `<h4></h4>`
                                     }
@@ -139,6 +138,7 @@ function movie_search(){
                                     results_box.classList.add('not-visible')
                                 }
                             })
+                            $.ajax({})
                         })
                     })
                 }
