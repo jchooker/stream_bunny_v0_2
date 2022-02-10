@@ -72,6 +72,7 @@ def user_info_page(request):
         "name_of_page" : "user_info_page",
         "user" : user,
         "movies" : user.liked_by.all(),
+        'images':Image.objects.filter(user=user.id),
     }
     return render(request,'user_info_page.html',context)
     

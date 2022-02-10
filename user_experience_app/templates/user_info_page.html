@@ -8,12 +8,16 @@
     <h3 class="yellow_text px-5 mx-5 mb-4"><i>Your Member Information</i></h3>
     <div class=""> {# DELETE THIS DIV? #}
         <div class="row yellow_text mx-5">
-            <div class="col col-1"></div>
-            <div class="col  col-4 bg-primaryxxxxx fs-5 ms-5xxxx">
-                <table class="tablexxx table-primaryxxx table-stripedxxx table-hoversxxx text-warningxxx">
+            <div class="col col-2">
+                {% for image in images %}
+                    <img src="{{image.image.url}}" alt="" onclick="imgZoom()" id="user-info-image" class="h-50 w-100 mx-5">
+                {% endfor %}
+            </div>
+            <div class="col col-4 fs-5 ms-4" >
+                <table class="">
                     <tbody>
                         <tr>
-                            <td class="px-5 w-25xxxxx">First Name: </td>
+                            <td class="px-5">First Name: </td>
                             <td class="pe-5">{{user.first_name}}</td>
                         </tr>
                         <tr>
@@ -35,8 +39,8 @@
                     </tbody>
                 </table>                        
             </div>
-            <div class="col bg-primaryxxxx">
-                <table id="" class="tablexxx table-primaryxxx table-stripedxxx table-hoversxxx text-warningxxx">
+            <div class="col ms-4">
+                <table id="" class="">
                     <tbody>
                         <tr>
                             <td class="fs-5 w-25">About you: </td>
@@ -44,19 +48,13 @@
                         <tr>
                             <td class="pe-5 me-5">{{user.about}}</td>
                         </tr>
-                        {% comment %}
-                        <tr>
-                            <td class="px-5"></td>
-                            <td class="edit_user_info pe-5"><i><a class="btn btn-outline-light bg-secondary" href="/user_experience/user_info_page_edit">Edit member information</a></i></td>
-                        </tr>
-                        {% endcomment %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <div class="px-5 text-end">
-        <a id="edit_user_info" class="btn btn-outline-light bg-secondary my-4 mx-5 px-5xxx" href="/user_experience/user_info_page_edit">Edit member information</a>                       
+        <a id="edit_user_info" class="btn btn-outline-light bg-secondary mx-5 my-4" href="/user_experience/user_info_page_edit">Edit member information</a>                       
     </div>
 </div> {# ajax grabs inside this div #}
 <hr>
