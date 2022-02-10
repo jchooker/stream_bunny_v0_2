@@ -1,4 +1,6 @@
-$('.like').click(function(e){
+$('body').on('click','.like',function(e){
+
+// $('.like').click(function(e){
     e.preventDefault();        
     console.log('like/un-like has been clicked');
     let movie_id = $(this).attr('movie_id');

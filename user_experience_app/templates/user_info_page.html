@@ -100,20 +100,11 @@
     $('body').on('click','#edit_user_info',function(e){
         e.preventDefault();        
         console.log('edit_user_info has been clicked');
-        // let movie_id = $(this).attr('movie_id');
         $.ajax({
             url: `/user_experience/user_info_page_edit`,                         
             success: serverResponse => {
                 console.log(serverResponse)
-                // $('#user_info_table').innerHTML(serverResponse)
                 user_info_table.innerHTML = serverResponse
-
-        //         console.log($(this).text())
-        //         if ($(this).text() == "like") {
-        //             $(this).text("un-like");
-        //         } else {
-        //             $(this).text("like");
-        //         }    
             }
         })
     });
