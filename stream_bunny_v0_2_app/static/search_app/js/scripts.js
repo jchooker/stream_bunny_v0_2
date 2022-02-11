@@ -45,8 +45,6 @@ function movie_search(){
                                 <div class="col-10 results-box-item">
                                     <h5>${movie.title}&nbsp;(${movie.year})</h5>
                                     <div class="dd-cast">
-                                        <a href="like/${movie.id}" class="like">Like &#x1F44D;</a>
-                                        <span id="space">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
                                         <span id="cast-parent">${final_cast}</span>
                                     </div>
                                 </div>
@@ -68,10 +66,13 @@ function movie_search(){
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Loading...
                             </button>`
+const the_id = this.getAttribute("movie-id")
+console.log(the_id)
                             $.ajax({
                                 url: `/get_movie/${this.getAttribute("movie-id")}`,
                                 type: `GET`,
                                 success: function(response){
+                                    // console.log(the_id)
                                     document.getElementById('loading-spinner-div').innerHTML = ``
                                     let streams = ""
                                     for (stream of response.streams) {
@@ -121,6 +122,20 @@ function movie_search(){
                                     } else {
                                         movie_details.innerHTML += `<p></p>`
                                     }
+                                    movie_details.innerHTML += `<div id="search_like_div"></div>`
+                                    // console.log(this[Object.keys(obj)[0]])
+                                    $.ajax({
+                                        url: `search-like-div/${the_id}`,
+                                        success: serverResponse => {
+                                            // console.log(serverResponse)
+                                            search_like_div = document.getElementById('search_like_div')
+                                            // console.log(search_like_div)
+                                            $(search_like_div).html(serverResponse)
+                                        }
+                                    //         // <a href="like/${movie.id}" class="like">Like &#x1F44D;</a>
+                                    })
+                                    // movie_details.innerHTML += `
+
                                     movie_details.innerHTML += `<h5>Streaming on: </h5>`
                                     if (streams) {
                                         movie_details.innerHTML += `
@@ -138,7 +153,6 @@ function movie_search(){
                                     results_box.classList.add('not-visible')
                                 }
                             })
-                            $.ajax({})
                         })
                     })
                 }

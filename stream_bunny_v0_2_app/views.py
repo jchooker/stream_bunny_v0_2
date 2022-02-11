@@ -35,8 +35,8 @@ def search(request, query):
         movie_array = get_movie_info(curr_movies)
         curr_movies = sorted(movie_array, key=lambda d: d['votes'], reverse=True)
         for i in curr_movies:
-            print(i['cast'])
-        return HttpResponse(json.dumps(movie_array[:8]), content_type="application/json")
+            # print(i['cast'])
+            return HttpResponse(json.dumps(movie_array[:8]), content_type="application/json")
     else:
         return HttpResponse(
             json.dumps({"no movie": "Can't find movie"}),
@@ -114,3 +114,33 @@ def like(request, movie_id):
         return redirect("/user_experience")
     else:
         return redirect("/login")
+
+# def unlike(request, movie_id):
+#     user_id = request.session['user_id']
+#     user = User.objects.get(id=user_id)
+#     movie = Movie.objects.get(id=movie_id)
+#     user.liked_by.remove(movie)
+#     return redirect("/user_experience")
+
+def search_like_div(request, imdb_id):
+    user_id = request.session['user_id']
+    user = User.objects.get(id=user_id)
+    m_id = str(imdb_id)
+
+    try:
+        Movie.objects.get(imdb_id=m_id)
+    except:
+        checker = 999
+        context ={
+            'not_in_db':checker,
+            'id':imdb_id
+        }
+        return render(request, 'partial_search_like.html', context)
+    else:
+        movie = Movie.objects.get(imdb_id=m_id)
+
+        context ={
+            'user': user,
+            'movie':movie
+        }
+        return render(request, 'partial_search_like.html', context)

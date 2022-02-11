@@ -1,0 +1,8 @@
+{% if movie not in user.liked_by.all %}
+<a class="like btn btn-sm btn-light btn-outline-secondary my-4" href="" movie_id="{{movie.id}}">already here</a>  
+{% elif movie in user.liked_by.all %}
+<a class="like btn btn-sm btn-light btn-outline-secondary my-4" href="" movie_id="{{movie.id}}">un-like</a>  
+{% endif %}
+{% if not_in_db %}
+<a class="like btn btn-sm btn-light btn-outline-secondary my-4" href="" movie_id="{{movie.id}}">like</a>
+{% endif %}
